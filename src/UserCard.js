@@ -10,10 +10,11 @@ export default function UserCard({ user, index = 0 }) {
     <article className="card" style={{ animationDelay: `${index * 70}ms` }}>
       <div className="card-header">
         <div className="avatar" aria-hidden="true">{initials}</div>
-        <div>
+        <div className="card-title-wrap">
           <h2 className="card-name">{user.name}</h2>
           <p className="card-username">@{user.username}</p>
         </div>
+        <span className="user-id-pill">#{user.id}</span>
       </div>
 
       <hr className="divider" />

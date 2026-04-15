@@ -60,6 +60,7 @@ export default function App() {
 
   const hasSearch = normalizedSearch.length > 0;
   const hasCompanyFilter = company !== 'All Companies';
+  const hasCustomSort = sortBy !== 'name';
 
   const resetAll = () => {
     setSearch('');
@@ -83,6 +84,7 @@ export default function App() {
           <p className="subtitle">
             Find teammates by name, company, and location through an interface designed for daily use.
           </p>
+          <p className="hero-note">Live dataset connected to JSONPlaceholder users API.</p>
 
           <div className="meta-strip">
             <div className="meta-pill">
@@ -135,6 +137,15 @@ export default function App() {
             </button>
           </div>
 
+          <div className="active-filters" aria-label="Current filters and sorting">
+            {!hasSearch && !hasCompanyFilter && !hasCustomSort && (
+              <span className="active-chip neutral">Showing all users</span>
+            )}
+            {hasSearch && <span className="active-chip">Query: {search.trim()}</span>}
+            {hasCompanyFilter && <span className="active-chip">Company: {company}</span>}
+            {hasCustomSort && <span className="active-chip">Sorted by: {sortBy}</span>}
+          </div>
+
           <div className="company-filters" role="group" aria-label="Filter by company">
             {companies.map(companyName => (
               <button
@@ -153,7 +164,10 @@ export default function App() {
         {loading && <p className="status">Loading users...</p>}
         {error && <p className="status error">Error: {error}</p>}
         {!loading && !error && filtered.length === 0 && (
-          <p className="status">No users found for the current filters.</p>
+          <div className="status status-empty">
+            <p>No users found for the current filters.</p>
+            <button type="button" className="status-action" onClick={resetAll}>Clear filters</button>
+          </div>
         )}
 
         {!loading && !error && filtered.length > 0 && (

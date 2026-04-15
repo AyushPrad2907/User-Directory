@@ -1,44 +1,119 @@
-# User Directory
+# User Directory App
 
-A responsive React app for browsing and searching team members from a user directory dataset.
+React task submission for building a User Directory with API integration, live search, and proper loading/error handling.
 
-## Features
+## Live Demo
 
-- Fast name-based search
-- Company filter chips
-- Sorting by name, company, and city
-- Animated, mobile-friendly card layout
+- Vercel URL: Add your deployed URL here (example: https://user-directory.vercel.app)
+
+## Objective
+
+Build a React app that:
+
+- Fetches users from a public API
+- Supports live search by name
+- Handles loading and error states clearly
 
 ## Tech Stack
 
-- React (Create React App)
-- Plain CSS (custom design system and animations)
-- JSONPlaceholder users API for demo data
+- React (Hooks: useState, useEffect)
+- JSONPlaceholder API: https://jsonplaceholder.typicode.com/users
+- Plain CSS (no UI frameworks)
+- Vercel (deployment)
 
-## Getting Started
+## Implemented Requirements
+
+### 1. Basic UI Design
+
+- Header title: User Directory
+- Search input with placeholder: Search by name...
+- User list rendered as responsive cards
+- Loading state shown while fetching
+- Error message shown on failed request
+
+### 2. User Card Fields
+
+Each card includes:
+
+- Name (user.name)
+- Username (@user.username)
+- Email (user.email)
+- City (user.address.city)
+- Company (user.company.name)
+
+### 3. API Integration
+
+- Endpoint used: GET https://jsonplaceholder.typicode.com/users
+- Data is fetched on component mount with useEffect
+- loading is set during request lifecycle
+- error is shown if the request fails
+
+### 4. State Management
+
+State variables:
+
+- users
+- search
+- loading
+- error
+
+Derived data:
+
+- filteredUsers (derived from users + search, not stored as separate state)
+
+State flow:
+
+Component mount -> API request -> loading true ->
+success: setUsers(data), loading false ->
+failure: setError(message), loading false ->
+on input: setSearch(value) -> filtered list re-renders
+
+## Optional Enhancements Added
+
+- Company filter chips
+- Sorting by name/company/city
+- Keyboard shortcuts (/ to focus search, Esc to clear)
+- Accessibility improvements (focus-visible styles, live status updates)
+- Custom UI animation and visual polish
+
+## Project Structure
+
+- src/App.js: main app logic (fetch, search, filters, sorting, states)
+- src/UserCard.js: reusable card component for each user
+- src/styles.css: layout, styling, responsive design, animations
+- src/App.test.js: basic app-level rendering test
+
+## Setup Instructions
 
 ```bash
 npm install
 npm start
 ```
 
-Open http://localhost:3000 to view it in the browser.
+Open http://localhost:3000 in your browser.
 
 ## Scripts
 
 ```bash
-npm start      # run development server
-npm test       # run tests
-npm run build  # create production build
+npm start
+npm test
+npm run build
 ```
 
-## Project Structure
+## Deployment (Vercel)
 
-- `src/App.js` - main page logic (fetching, search, filter, sorting)
-- `src/UserCard.js` - reusable user profile card
-- `src/styles.css` - app styling, layout, and animations
+1. Push code to GitHub.
+2. Go to https://vercel.com.
+3. Import the repository.
+4. Deploy.
+5. Copy the live URL and paste it in the Live Demo section above.
+
+## Tech Choices
+
+- React hooks were used for simple and clear local state management.
+- Plain CSS was used to satisfy the assignment constraint and keep the stack beginner-friendly.
+- JSONPlaceholder is used as a stable mock API for user data.
 
 ## Notes
 
-- Data is loaded from `https://jsonplaceholder.typicode.com/users`.
-- This project is intended as a frontend internship submission/demo.
+- This submission prioritizes core functionality and code clarity first, then UI enhancements.
