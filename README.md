@@ -4,7 +4,7 @@ React task submission for building a User Directory with API integration, live s
 
 ## Live Demo
 
-- Vercel URL: Add your deployed URL here (example: https://user-directory.vercel.app)
+- Vercel URL: https://user-directory-henna.vercel.app/
 
 ## Objective
 
