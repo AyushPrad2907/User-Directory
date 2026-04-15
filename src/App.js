@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import UserCard from './UserCard';
 import './styles.css';
 
@@ -9,6 +9,7 @@ export default function App() {
   const [company, setCompany] = useState('All Companies');
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState(null);
+  const searchInputRef = useRef(null);
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -18,6 +19,24 @@ export default function App() {
       })
       .then(data => { setUsers(data); setLoading(false); })
       .catch(err => { setError(err.message); setLoading(false); });
+  }, []);
+
+  useEffect(() => {
+    const onKeyDown = event => {
+      const isTypingInInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName);
+
+      if (event.key === '/' && !isTypingInInput) {
+        event.preventDefault();
+        searchInputRef.current?.focus();
+      }
+
+      if (event.key === 'Escape' && document.activeElement === searchInputRef.current) {
+        setSearch('');
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
   const normalizedSearch = search.trim().toLowerCase();
@@ -85,12 +104,14 @@ export default function App() {
           <div className="search-wrap">
             <span className="search-icon" aria-hidden="true">SEARCH</span>
             <input
+              ref={searchInputRef}
               className="search"
               type="text"
               placeholder="Search by name..."
               value={search}
               onChange={e => setSearch(e.target.value)}
             />
+            <p className="search-hint">Press / to focus search and Esc to clear</p>
           </div>
 
           <div className="toolbar">

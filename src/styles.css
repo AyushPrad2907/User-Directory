@@ -246,6 +246,13 @@ h1 {
   pointer-events: none;
 }
 
+.search-hint {
+  margin-top: 0.45rem;
+  font-size: 0.74rem;
+  color: #8f7b69;
+  letter-spacing: 0.03em;
+}
+
 .toolbar {
   margin-top: 0.8rem;
   display: flex;
