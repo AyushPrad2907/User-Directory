@@ -107,6 +107,7 @@ export default function App() {
               ref={searchInputRef}
               className="search"
               type="text"
+              aria-label="Search users by name"
               placeholder="Search by name..."
               value={search}
               onChange={e => setSearch(e.target.value)}
@@ -140,6 +141,7 @@ export default function App() {
                 key={companyName}
                 type="button"
                 className={`filter-chip ${company === companyName ? 'active' : ''}`}
+                aria-pressed={company === companyName}
                 onClick={() => setCompany(companyName)}
               >
                 {companyName}
@@ -155,7 +157,7 @@ export default function App() {
         )}
 
         {!loading && !error && filtered.length > 0 && (
-          <p className="result-count">
+          <p className="result-count" role="status" aria-live="polite">
             Showing {filtered.length} {filtered.length === 1 ? 'profile' : 'profiles'}
             {hasSearch ? ` for "${search.trim()}"` : ''}
             {hasCompanyFilter ? ` in ${company}` : ''}

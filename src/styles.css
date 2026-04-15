@@ -339,6 +339,13 @@ h1 {
   color: #8a4421;
 }
 
+.filter-chip:focus-visible,
+.reset-btn:focus-visible,
+.sort-field select:focus-visible {
+  outline: 2px solid rgba(191, 90, 43, 0.55);
+  outline-offset: 2px;
+}
+
 .status {
   text-align: center;
   border: 1px dashed var(--line-soft);
