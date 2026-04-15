@@ -47,7 +47,20 @@ export default function App() {
 
   const filtered = users
     .filter(u => {
-      const matchesName = u.name.toLowerCase().includes(normalizedSearch);
+      const searchableText = [
+        u.name,
+        u.username,
+        u.email,
+        u.address.city,
+        u.address.street,
+        u.address.suite,
+        u.address.zipcode,
+        u.company.name,
+        u.company.catchPhrase,
+        u.company.bs,
+      ].join(' ').toLowerCase();
+
+      const matchesName = searchableText.includes(normalizedSearch);
       const matchesCompany = company === 'All Companies' || u.company.name === company;
       return matchesName && matchesCompany;
     })
