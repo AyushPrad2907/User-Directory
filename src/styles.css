@@ -563,6 +563,60 @@ h1 {
   text-decoration: underline;
 }
 
+.card-actions {
+  margin-top: 0.7rem;
+}
+
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #9c341e;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255, 90, 61, 0.45);
+  padding-bottom: 0.08rem;
+}
+
+.map-link:hover {
+  color: #7a2614;
+  border-bottom-color: rgba(122, 38, 20, 0.5);
+}
+
+.company-insight {
+  margin-top: 0.75rem;
+  border: 1px solid rgba(255, 90, 61, 0.24);
+  border-radius: 12px;
+  background: rgba(255, 244, 236, 0.72);
+  padding: 0.5rem 0.6rem;
+}
+
+.company-insight summary {
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #8f2b16;
+}
+
+.insight-quote {
+  margin-top: 0.5rem;
+  font-size: 0.84rem;
+  color: #5b3d34;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.insight-bs {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: #8a6a5f;
+  line-height: 1.4;
+  text-transform: capitalize;
+}
+
 .company-tag {
   display: inline-block;
   margin-top: 0.95rem;
