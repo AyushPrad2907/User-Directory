@@ -25,13 +25,16 @@ export default function App() {
     const onKeyDown = event => {
       const isTypingInInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName);
 
-      if (event.key === '/' && !isTypingInInput) {
-        event.preventDefault();
-        searchInputRef.current?.focus();
-      }
+      if (event.key === 'Escape') {
+        if (!isTypingInInput) {
+          event.preventDefault();
+          searchInputRef.current?.focus();
+          return;
+        }
 
-      if (event.key === 'Escape' && document.activeElement === searchInputRef.current) {
-        setSearch('');
+        if (document.activeElement === searchInputRef.current) {
+          setSearch('');
+        }
       }
     };
 
@@ -114,7 +117,7 @@ export default function App() {
               value={search}
               onChange={e => setSearch(e.target.value)}
             />
-            <p className="search-hint">Press / to focus search and Esc to clear</p>
+            <p className="search-hint">Press Esc to focus search</p>
           </div>
 
           <div className="toolbar">
