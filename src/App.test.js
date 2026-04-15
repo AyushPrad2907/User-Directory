@@ -1,8 +1,22 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+beforeEach(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve([]),
+    })
+  );
+});
+
+afterEach(() => {
+  jest.resetAllMocks();
+});
+
+test('renders directory heading and search input', async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(await screen.findByRole('heading', { name: /user directory/i })).toBeInTheDocument();
+  expect(screen.getByPlaceholderText(/search by name/i)).toBeInTheDocument();
 });
